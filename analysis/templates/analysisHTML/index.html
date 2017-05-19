@@ -1,0 +1,16 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        {{  form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+{% include "analysisHTML/upload.html" %}
+</body>
+</html>
