@@ -1,0 +1,24 @@
+html, body, #upload {
+    margin: 0;
+    padding: 0;
+}
+
+#upload {
+  align-items: center;
+  justify-content: center;
+}
+
+#select_file {
+    border: 1px solid  black;
+    width: 30%;
+    height: 10%;
+    margin:30px;
+    border-radius: 15px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+input[type=file] {
+    display: inline-block !important;
+}

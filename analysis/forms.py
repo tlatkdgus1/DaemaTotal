@@ -4,4 +4,7 @@ from .models import VirusModel
 class UploadFileForm(forms.ModelForm):
     class Meta:
         model = VirusModel
-        fields = ('title', 'file')
+        fields = ('file',)
+        labels = {
+            'file': 'Upload',
+        }

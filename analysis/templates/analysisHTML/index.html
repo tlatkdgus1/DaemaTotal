@@ -2,15 +2,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Virus Analysis</title>
 </head>
 <body>
-    <form method="post" enctype="multipart/form-data" novalidate>
-        {% csrf_token %}
-        {{  form.as_p }}
-        <button type="submit">Upload</button>
+
+    <h1 style="text-align: center; margin-top: 10%">Virus Analysis</h1>
+<div class="upload" id="upload">
+    <form method="post" enctype="multipart/form-data" novalidate ></form>{% csrf_token %}
+        <div id="select_file">
+            {{ form.as_p }}
+            </br>
+            <button type="submit" style="margin-top: 10px">Upload</button>
+        </div>
     </form>
-{% include "analysisHTML/upload.html" %}
+</div>
 </body>
 </html>
