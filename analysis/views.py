@@ -1,14 +1,11 @@
-from django.shortcuts import render, HttpResponseRedirect
-from django.views.generic.base import TemplateView
+from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import View
-from django.utils import timezone
 from .forms import UploadFileForm
+from .virus_info import *
+import os
+path_file = "/mnt/c/Users/Sim/PycharmProjects/DaemaTotal/media/file/"
 
-from django.contrib.auth import authenticate, login, logout as _logout
-
-#class Index(TemplateView):
-#	template_name='analysisHTML/index.html'
 
 class UploadVirus(View):
     def get(self, request, *args, **kwargs):
@@ -18,6 +15,11 @@ class UploadVirus(View):
     def post(self, request, *args, **kwargs):
         form = UploadFileForm(request.POST, request.FILES)
         print(request.FILES)
-        if form.is_valid():
+        extension = os.path.splitext(str(request.FILES.get('file')))[1]
+        request.FILES.get('file')
+        if extension in '.exe' and form.is_valid():
             form.save()
-            return HttpResponseRedirect('analysisHTML/result.html')
+            filepath = str(path_file+str(request.FILES.get('file')))
+            print(get_dump(filepath))
+            return HttpResponse("Goood")
+        return HttpResponse("EXE FILE Please")

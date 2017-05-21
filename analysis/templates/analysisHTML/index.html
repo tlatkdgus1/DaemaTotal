@@ -12,7 +12,7 @@
 
     <h1 style="text-align: center; margin-top: 10%">Virus Analysis</h1>
 <div class="upload" id="upload">
-    <form method="post" enctype="multipart/form-data" novalidate ></form>{% csrf_token %}
+    <form method="post" enctype="multipart/form-data" novalidate >{% csrf_token %}
         <div id="select_file">
             {{ form.as_p }}
             </br>
