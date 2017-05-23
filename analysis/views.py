@@ -14,12 +14,15 @@ class UploadVirus(View):
 
     def post(self, request, *args, **kwargs):
         form = UploadFileForm(request.POST, request.FILES)
-        print(request.FILES)
         extension = os.path.splitext(str(request.FILES.get('file')))[1]
-        request.FILES.get('file')
+
         if extension in '.exe' and form.is_valid():
             form.save()
             filepath = str(path_file+str(request.FILES.get('file')))
-            print(get_dump(filepath))
+
+            set_filePath(filepath)
+            set_pe()
+            print(get_import())
+            get_strings()
             return HttpResponse("Goood")
         return HttpResponse("EXE FILE Please")
