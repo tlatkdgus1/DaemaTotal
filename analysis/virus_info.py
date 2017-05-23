@@ -47,8 +47,8 @@ def get_import():
 def get_strings():
     strings = subprocess.check_output('strings '+file, shell=True).decode('utf-8')
     string_util.set_strings(strings)
+
     print(string_util.check_ip())
     print(string_util.check_url())
-    print(string_util.check_string())
 
 
