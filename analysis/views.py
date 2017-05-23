@@ -1,11 +1,13 @@
-from django.shortcuts import render
+import os
+
 from django.http import HttpResponse
+from django.shortcuts import render
 from django.views.generic import View
 from .forms import UploadFileForm
-from .virus_info import *
-import os
-path_file = "/mnt/c/Users/Sim/PycharmProjects/DaemaTotal/media/file/"
+from analysis.string_pkg import string
+from analysis.virus_pkg import virus_info
 
+path_file = "/mnt/c/Users/Sim/PycharmProjects/DaemaTotal/media/file/"
 
 class UploadVirus(View):
     def get(self, request, *args, **kwargs):
@@ -20,9 +22,9 @@ class UploadVirus(View):
             form.save()
             filepath = str(path_file+str(request.FILES.get('file')))
 
-            set_filePath(filepath)
-            set_pe()
-            print(get_import())
-            get_strings()
+            virus_info.set_filePath(filepath)
+            virus_info.set_pe()
+            print(virus_info.get_import())
+            string.set_strings(filepath)
             return HttpResponse("Goood")
         return HttpResponse("EXE FILE Please")

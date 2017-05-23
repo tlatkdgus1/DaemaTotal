@@ -1,7 +1,5 @@
 import pefile
 import math
-import subprocess
-from . import string_util
 
 file = ""
 pe = ""
@@ -44,11 +42,6 @@ def get_import():
     for imp in entry.imports:
         print ('\t', hex(imp.address), imp.name)
 
-def get_strings():
-    strings = subprocess.check_output('strings '+file, shell=True).decode('utf-8')
-    string_util.set_strings(strings)
 
-    print(string_util.check_ip())
-    print(string_util.check_url())
 
 
