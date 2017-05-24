@@ -8,6 +8,10 @@ def set_strings(strings1):
     global strings
     strings = strings1.split("\n")
 
+def get_strings():
+    global strings
+    return strings
+
 def check_ip():
     global strings
     return_tuple=[]
@@ -37,9 +41,9 @@ def check_url():
 
     return return_tuple
 
-def check_upx():
+def check_string(string):
     global strings
-    pattern = re.compile("UPX0")
+    pattern = re.compile(string)
 
     for i in strings:
         string = pattern.match(i)

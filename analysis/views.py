@@ -5,9 +5,15 @@ from django.shortcuts import render
 from django.views.generic import View
 from .forms import UploadFileForm
 from analysis.string_pkg import string
-from analysis.virus_pkg import virus_info
+from analysis.virus_pkg import virus
+from analysis.virus_pkg import virus_analysis
+
 
 path_file = "/mnt/c/Users/Sim/PycharmProjects/DaemaTotal/media/file/"
+
+def get_pathFile():
+    global path_file
+    return path_file
 
 class UploadVirus(View):
     def get(self, request, *args, **kwargs):
@@ -22,9 +28,11 @@ class UploadVirus(View):
             form.save()
             filepath = str(path_file+str(request.FILES.get('file')))
 
-            virus_info.set_filePath(filepath)
-            virus_info.set_pe()
-            print(virus_info.get_import())
-            string.set_strings(filepath)
+            virus_analysis.virus.set_file(filepath)
+            string.set_strings()
+
+            virus_analysis.analysis()
+
+
             return HttpResponse("Goood")
         return HttpResponse("EXE FILE Please")
