@@ -1,12 +1,12 @@
 import pefile
 import math
-from . import virus
+from . import virus_settings
 
 def get_dump():
-    return virus.get_pe().dump_info()
+    return virus_settings.get_pe().dump_info()
 
 def get_hash():
-    for sect in virus.get_pe().sections:
+    for sect in virus_settings.get_pe().sections:
         print (sect.Name)
         print (sect.get_hash_md5())
         print (sect.get_hash_sha256())
@@ -24,7 +24,7 @@ def get_entropy(data):
     return entropy
 
 def get_import():
-    for entry in virus.get_pe().DIRECTORY_ENTRY_IMPORT:
+    for entry in virus_settings.get_pe().DIRECTORY_ENTRY_IMPORT:
         print (entry.dll)
     for imp in entry.imports:
         print ('\t', hex(imp.address), imp.name)
