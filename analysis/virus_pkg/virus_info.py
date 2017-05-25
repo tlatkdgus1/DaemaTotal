@@ -23,11 +23,16 @@ def get_entropy(data):
 
     return entropy
 
-def get_import():
+def get_dll():
+    dll_list=[]
     for entry in virus_settings.get_pe().DIRECTORY_ENTRY_IMPORT:
-        print (entry.dll)
-    for imp in entry.imports:
-        print ('\t', hex(imp.address), imp.name)
+        dll = str(entry.dll).split("b'")
+        dll = dll[1].split("'")
+        dll = dll[0]
+        dll_list.append(dll)
+
+    return dll_list
+
 
 
 

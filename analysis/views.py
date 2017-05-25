@@ -7,6 +7,7 @@ from .forms import UploadFileForm
 from analysis.string_pkg import string
 from analysis.virus_pkg import virus_settings
 from analysis.virus_pkg import virus_analysis
+from analysis.virus_pkg import virus_info
 from analysis.virus_pkg import virus
 
 
@@ -31,8 +32,9 @@ class UploadVirus(View):
 
             virus_analysis.virus_settings.set_file(filepath)
             string.set_strings()
-
+            print (virus_analysis.analysis_string())
             print (virus.virus_check())
+            print(virus_info.get_dll())
 
 
             return HttpResponse("Goood")
