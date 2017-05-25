@@ -32,7 +32,6 @@ class UploadVirus(View):
 
             virus_analysis.virus_settings.set_file(filepath)
             string.set_strings()
-            print (virus_analysis.analysis_string())
             print (virus.virus_check())
             print(virus_info.get_dll())
 

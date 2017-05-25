@@ -1,8 +1,9 @@
-from analysis.models import Signature_sha256
+from analysis.models import VirusDatabase
 from . import signature_get
 from analysis.virus_pkg import virus_settings
+
 def signature_compare():
-    signature = Signature_sha256.objects.all()
+    signature = VirusDatabase.objects.all()
     return_list = []
     for sig in signature:
         if sig.hash == signature_get.get_sha256():
