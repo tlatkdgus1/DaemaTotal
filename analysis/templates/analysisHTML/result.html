@@ -1,0 +1,107 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/result.css' %}">
+    <meta charset="UTF-8">
+    <title>Virus Analysis</title>
+</head>
+<body>
+<center><h1>Analysis Result</h1></center>
+<div id="result">
+    <div style="font-size:20px; margin-top:10px">FILE</div>
+    {{ dict.filename }}<br>
+    {{ dict.sha256 }}
+    {% if dict.isVirus == "THIS IS VIRUS" %}
+    <div class="isVirus">{{ dict.isVirus }}</div>
+    {% else %}
+    <div class="isVirus">{{ dict.isVirus }}</div>
+    {% endif %}
+    <hr color="black" style="width:80%; border=1px; margin-bottom: 10px">
+    <div style="font-size:20px; margin-top: 10px">DLL LIST</div>
+    {% for dll in dict.dlls %}
+        {{ dll }}
+    {% endfor %}
+    <hr color="black" style="width:80%; border=1px; margin-bottom: 10px">
+    <div style="font-size:20px; margin-top: 10px">Warning Functions</div>
+    {% for warning in dict.warnings %}
+        {{ warning }}
+    {% endfor %}
+    <hr color="black" style="width:80%; border=1px; margin-bottom: 10px">
+    <table style="margin-left: auto; margin-right: auto;">
+        <tr>
+            <th><span style="width:150px;display:inline-block;">Name</span></th>
+            <th><span style="width:120px;display:inline-block;">Virtual address</span></th>
+            <th><span style="width:100px;display:inline-block;">Virtual size</span></th>
+            <th><span style="width:100px;display:inline-block;">Raw size</span></th>
+            <th><span>MD5</span></th>
+        </tr>
+
+        <tr>
+            <td><span style="width:120px;display:inline-block;">{{dict.textbss.name}}</span></td>
+            <td><span style="width:120px;display:inline-block;">{{dict.textbss.vir_addr}}</span></td>
+            <td><span style="width:100px;display:inline-block;">{{dict.textbss.vir_size}}</span></td>
+            <td><span style="width:100px;display:inline-block;">{{dict.textbss.raw_size}}</span></td>
+            <td><span>{{dict.textbss.md5}}</span></td>
+        </tr>
+        <tr>
+            <td><span style="width:120px;display:inline-block;">{{dict.text.name}}</span></td>
+            <td><span style="width:120px;display:inline-block;">{{dict.text.vir_addr}}</span></td>
+            <td><span style="width:100px;display:inline-block;">{{dict.text.vir_size}}</span></td>
+            <td><span style="width:100px;display:inline-block;">{{dict.text.raw_size}}</span></td>
+            <td><span>{{dict.text.md5}}</span></td>
+        </tr>
+        <tr>
+            <td><span style="width:120px;display:inline-block;">{{dict.rdata.name}}</span></td>
+            <td><span style="width:120px;display:inline-block;">{{dict.rdata.vir_addr}}</span></td>
+            <td><span style="width:100px;display:inline-block;">{{dict.rdata.vir_size}}</span></td>
+            <td><span style="width:100px;display:inline-block;">{{dict.rdata.raw_size}}</span></td>
+            <td><span>{{dict.rdata.md5}}</span></td>
+        </tr>
+        <tr>
+            <td><span style="width:120px;display:inline-block;">{{dict.data.name}}</span></td>
+            <td><span style="width:120px;display:inline-block;">{{dict.data.vir_addr}}</span></td>
+            <td><span style="width:100px;display:inline-block;">{{dict.data.vir_size}}</span></td>
+            <td><span style="width:100px;display:inline-block;">{{dict.data.raw_size}}</span></td>
+            <td><span>{{dict.data.md5}}</span></td>
+        </tr>
+        <tr>
+            <td><span style="width:120px;display:inline-block;">{{dict.idata.name}}</span></td>
+            <td><span style="width:120px;display:inline-block;">{{dict.idata.vir_addr}}</span></td>
+            <td><span style="width:100px;display:inline-block;">{{dict.idata.vir_size}}</span></td>
+            <td><span style="width:100px;display:inline-block;">{{dict.idata.raw_size}}</span></td>
+            <td><span>{{dict.idata.md5}}</span></td>
+        </tr>
+        <tr>
+            <td><span style="width:120px;display:inline-block;">{{dict.gfids.name}}</span></td>
+            <td><span style="width:120px;display:inline-block;">{{dict.gfids.vir_addr}}</span></td>
+            <td><span style="width:100px;display:inline-block;">{{dict.gfids.vir_size}}</span></td>
+            <td><span style="width:100px;display:inline-block;">{{dict.gfids.raw_size}}</span></td>
+            <td><span>{{dict.gfids.md5}}</span></td>
+        </tr>
+        <tr>
+            <td><span style="width:120px;display:inline-block;">{{dict.00cfg.name}}</span></td>
+            <td><span style="width:120px;display:inline-block;">{{dict.00cfg.vir_addr}}</span></td>
+            <td><span style="width:100px;display:inline-block;">{{dict.00cfg.vir_size}}</span></td>
+            <td><span style="width:100px;display:inline-block;">{{dict.00cfg.raw_size}}</span></td>
+            <td><span>{{dict.00cfg.md5}}</span></td>
+        </tr>
+        <tr>
+            <td><span style="width:120px;display:inline-block;">{{dict.rsrc.name}}</span></td>
+            <td><span style="width:120px;display:inline-block;">{{dict.rsrc.vir_addr}}</span></td>
+            <td><span style="width:100px;display:inline-block;">{{dict.rsrc.vir_size}}</span></td>
+            <td><span style="width:100px;display:inline-block;">{{dict.rsrc.raw_size}}</span></td>
+            <td><span>{{dict.rsrc.md5}}</span></td>
+        </tr>
+        <tr>
+            <td><span style="width:120px;display:inline-block;">{{dict.reloc.name}}</span></td>
+            <td><span style="width:120px;display:inline-block;">{{dict.reloc.vir_addr}}</span></td>
+            <td><span style="width:100px;display:inline-block;">{{dict.reloc.vir_size}}</span></td>
+            <td><span style="width:100px;display:inline-block;">{{dict.reloc.raw_size}}</span></td>
+            <td><span>{{dict.reloc.md5}}</span></td>
+        </tr>
+
+
+    </table>
+</body>
+</html>

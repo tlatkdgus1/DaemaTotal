@@ -36,6 +36,7 @@ def compare_function():
         virus_functions = virus.function.all()
         for virus_function in virus_functions:
             for function in functions:
+                print(virus_function.function+" : "+function)
                 if virus_function.function == function:
                     function_match = function_match + 1
     for function in functions:

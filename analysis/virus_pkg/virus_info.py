@@ -11,6 +11,20 @@ def get_hash():
         print (sect.get_hash_md5())
         print (sect.get_hash_sha256())
 
+def get_section(num):
+
+    pe = virus_settings.get_pe()
+    section = pe.sections[num]
+    return_dict = {
+        'name' : section.Name,
+        'vir_addr' : hex(section.VirtualAddress),
+        'vir_size' : section.Misc_VirtualSize,
+        'raw_size' : section.SizeOfRawData,
+        'md5' : section.get_hash_md5(),
+    }
+
+    return return_dict
+
 def get_entropy(data):
     if not data:
         return 0
