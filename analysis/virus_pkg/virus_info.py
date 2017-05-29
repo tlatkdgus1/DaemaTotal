@@ -12,8 +12,9 @@ def get_hash():
         print (sect.get_hash_sha256())
 
 def get_section(num):
-
     pe = virus_settings.get_pe()
+    for i in pe.sections:
+        print(i)
     section = pe.sections[num]
     return_dict = {
         'name' : section.Name,

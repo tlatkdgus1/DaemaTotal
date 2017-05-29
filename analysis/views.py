@@ -11,6 +11,7 @@ from analysis.virus_pkg import virus_analysis
 from analysis.virus_pkg import virus_info
 from analysis.virus_pkg import virus
 from analysis.virus_pkg.virus_detection.detect_signature import signature_get
+from analysis.virus_pkg.virus_detection.detect_heuristic import heuristic_get
 
 
 path_file = "/mnt/c/Users/Sim/PycharmProjects/DaemaTotal/media/file/"
@@ -39,8 +40,10 @@ class UploadVirus(View):
                 'dlls' : virus_info.get_dll(),
                 'isVirus' : virus.virus_check(),
                 'filename' : virus_settings.get_fileName(),
-                'warnings' : function.function_warning(),
+                'warning_functions' : function.function_warning(),
+                'warning_strings' : heuristic_get.heuristic_string(),
                 'sha256' :signature_get.get_sha256(),
+                'packing' : virus_analysis.analysis_packing(),
                 'textbss' : virus_info.get_section(0),
                 'text' : virus_info.get_section(1),
                 'rdata': virus_info.get_section(2),

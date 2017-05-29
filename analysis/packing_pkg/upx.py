@@ -10,4 +10,4 @@ def upx_unpack():
         string.set_strings()
         return "UPX"
 
-    return False
+    return None

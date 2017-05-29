@@ -9,7 +9,11 @@
 <body>
 <center><h1>Analysis Result</h1></center>
 <div id="result">
-    <div style="font-size:20px; margin-top:10px">FILE</div>
+    <div style="font-size:20px; margin-top:10px">FILE
+    {% if dict.packing != None %}
+        | {{ dict.packing }}
+        {% endif %}
+    </div>
     {{ dict.filename }}<br>
     {{ dict.sha256 }}
     {% if dict.isVirus == "THIS IS VIRUS" %}
@@ -24,10 +28,16 @@
     {% endfor %}
     <hr color="black" style="width:80%; border=1px; margin-bottom: 10px">
     <div style="font-size:20px; margin-top: 10px">Warning Functions</div>
-    {% for warning in dict.warnings %}
+    {% for warning in dict.warning_functions %}
         {{ warning }}
     {% endfor %}
     <hr color="black" style="width:80%; border=1px; margin-bottom: 10px">
+    <div style="font-size:20px; margin-top: 10px">Warning Strings</div>
+    {% for warning in dict.warning_strings %}
+        {{ warning }}<br>
+    {% endfor %}
+    <hr color="black" style="width:80%; border=1px; margin-bottom: 10px">
+    <div style="font-size:20px; margin-top:10px">PE sections</div>
     <table style="margin-left: auto; margin-right: auto;">
         <tr>
             <th><span style="width:150px;display:inline-block;">Name</span></th>
