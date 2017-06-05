@@ -53,6 +53,7 @@ class UploadVirus(View):
                 '00cfg': virus_info.get_section(6),
                 'rsrc': virus_info.get_section(7),
                 'reloc': virus_info.get_section(8),
+                'arch': virus_info.get_arch(),
             }
 
             return render(request, 'analysisHTML/result.html', {'dict': dict})

@@ -28,6 +28,7 @@
     {% endfor %}
     <hr color="black" style="width:80%; border=1px; margin-bottom: 10px">
     <div style="font-size:20px; margin-top: 10px">Warning Functions</div>
+
     {% for warning in dict.warning_functions %}
         {{ warning }}
     {% endfor %}
@@ -110,8 +111,14 @@
             <td><span style="width:100px;display:inline-block;">{{dict.reloc.raw_size}}</span></td>
             <td><span>{{dict.reloc.md5}}</span></td>
         </tr>
-
-
     </table>
+    <hr color="black" style="width:80%; border=1px; margin-bottom: 10px">
+    <div style="font-size:20px; margin-top:10px">More</div>
+    {% if dict.arch == 32 %}
+        32bit Binary
+    {% else %}
+        64bit Binary
+    {% endif %}
+
 </body>
 </html>

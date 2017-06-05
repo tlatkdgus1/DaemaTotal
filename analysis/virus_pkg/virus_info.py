@@ -48,7 +48,11 @@ def get_dll():
 
     return dll_list
 
-
+def get_arch():
+    if virus_settings.get_pe().FILE_HEADER.Machine == 0x14c:
+        return 32
+    else:
+        return 64
 
 
 
